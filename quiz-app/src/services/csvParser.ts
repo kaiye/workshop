@@ -19,12 +19,23 @@ interface CSVRow {
 export function parseCSV(csvContent: string): Question[] {
   const lines = csvContent.trim().split('\n');
 
-  if (lines.length < 2) {
+  // Find the header row (skip empty lines at the beginning)
+  let headerIndex = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    // Look for a line that starts with "Question" (header row)
+    if (line.toLowerCase().startsWith('question')) {
+      headerIndex = i;
+      break;
+    }
+  }
+
+  if (lines.length < headerIndex + 2) {
     throw new Error('CSV file must contain a header row and at least one question');
   }
 
-  // Skip header row
-  const dataLines = lines.slice(1);
+  // Skip header row and get data lines
+  const dataLines = lines.slice(headerIndex + 1);
   const questions: Question[] = [];
 
   for (let i = 0; i < dataLines.length; i++) {
@@ -138,19 +149,29 @@ export function validateCSV(csvContent: string): { valid: boolean; errors: strin
   const errors: string[] = [];
   const lines = csvContent.trim().split('\n');
 
-  if (lines.length < 2) {
+  // Find the header row (skip empty lines at the beginning)
+  let headerIndex = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.toLowerCase().startsWith('question')) {
+      headerIndex = i;
+      break;
+    }
+  }
+
+  if (lines.length < headerIndex + 2) {
     errors.push('CSV file must contain a header row and at least one question');
     return { valid: false, errors };
   }
 
-  const dataLines = lines.slice(1);
+  const dataLines = lines.slice(headerIndex + 1);
 
   for (let i = 0; i < dataLines.length; i++) {
     const line = dataLines[i].trim();
     if (!line) continue;
 
     const row = parseCSVLine(line);
-    const rowNum = i + 2;
+    const rowNum = headerIndex + i + 2; // Account for header position
 
     if (row.length < 6) {
       errors.push(`Row ${rowNum}: Insufficient columns (minimum 6 required)`);
