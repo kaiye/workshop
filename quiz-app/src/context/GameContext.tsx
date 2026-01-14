@@ -197,6 +197,11 @@ export function GameProvider({ children }: { children: ReactNode }) {
   // Broadcast state changes when host
   useEffect(() => {
     if (state.isHost && state.gameId) {
+      console.log('[GameContext] Saving host state to localStorage:', {
+        gameId: state.gameId,
+        phase: state.phase,
+        questionsCount: state.questions.length,
+      });
       const channel = new BroadcastChannel(CHANNEL_NAME);
       channel.postMessage({ type: 'STATE_SYNC', payload: state });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -221,15 +226,29 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const joinGame = useCallback((gameId: string) => {
+    const normalizedInput = gameId.toUpperCase().trim();
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
+
+    if (!stored) {
+      console.log('[joinGame] No game state in localStorage');
+      return false;
+    }
+
+    try {
       const hostState = JSON.parse(stored) as GameState;
-      if (hostState.gameId === gameId) {
-        dispatch({ type: 'JOIN_GAME', gameId });
+      const storedGameId = (hostState.gameId || '').toUpperCase().trim();
+
+      console.log('[joinGame] Comparing:', { input: normalizedInput, stored: storedGameId });
+
+      if (storedGameId && storedGameId === normalizedInput) {
+        dispatch({ type: 'JOIN_GAME', gameId: storedGameId });
         dispatch({ type: 'SYNC_STATE', state: hostState });
         return true;
       }
+    } catch (e) {
+      console.error('[joinGame] Failed to parse stored state:', e);
     }
+
     return false;
   }, []);
 
