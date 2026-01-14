@@ -1,9 +1,10 @@
-import { useState, useRef, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BackgroundPattern, Header, Button } from '../../components/common';
 import { useGame } from '../../context/GameContext';
 import { parseCSVFile, validateCSV } from '../../services/csvParser';
-import { Question } from '../../types/game';
+import type { Question } from '../../types/game';
 
 export function CreateGamePage() {
   const navigate = useNavigate();

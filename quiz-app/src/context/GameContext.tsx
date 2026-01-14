@@ -1,11 +1,7 @@
-import { createContext, useContext, useReducer, useCallback, useEffect, ReactNode } from 'react';
-import {
-  GameState,
-  GameAction,
-  INITIAL_GAME_STATE,
-  Question,
-  Player,
-} from '../types/game';
+import type { ReactNode } from 'react';
+import { createContext, useContext, useReducer, useCallback, useEffect } from 'react';
+import type { GameState, GameAction, Question, Player } from '../types/game';
+import { INITIAL_GAME_STATE } from '../types/game';
 
 const STORAGE_KEY = 'quiz_game_state';
 const CHANNEL_NAME = 'quiz_game_channel';

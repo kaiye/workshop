@@ -1,4 +1,4 @@
-import { Question } from '../types/game';
+import type { Question } from '../types/game';
 
 interface CSVRow {
   questionNumber: string;
