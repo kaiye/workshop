@@ -207,6 +207,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
         dispatch({ type: 'ADD_PLAYER', player: payload });
       } else if (type === 'ANSWER_SUBMITTED' && state.isHost) {
         dispatch({ type: 'SUBMIT_ANSWER', playerId: payload.playerId, answer: payload.answer });
+      } else if (type === 'REQUEST_NEXT_QUESTION' && state.isHost) {
+        dispatch({ type: 'NEXT_QUESTION' });
       }
     };
 
@@ -318,8 +320,16 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const nextQuestion = useCallback(() => {
-    dispatch({ type: 'NEXT_QUESTION' });
-  }, []);
+    if (state.isHost) {
+      // Host directly advances the question
+      dispatch({ type: 'NEXT_QUESTION' });
+    } else {
+      // Non-host players request the host to advance
+      const channel = new BroadcastChannel(CHANNEL_NAME);
+      channel.postMessage({ type: 'REQUEST_NEXT_QUESTION' });
+      channel.close();
+    }
+  }, [state.isHost]);
 
   const endGame = useCallback(() => {
     dispatch({ type: 'END_GAME' });
