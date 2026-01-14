@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Incorrect Answer Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#EF4444", 
+                        "game-purple": "#7C3AED", 
+                        "game-red": "#EF4444", 
+                        "game-dark-red": "#B91C1C",
+                        "game-green": "#22C55E", 
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                        "game-gray": "#9CA3AF",
+                        "game-shadow": "rgba(0, 0, 0, 0.15)",
+                    },
+                    fontFamily: {
+                        display: ["Nunito", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'game': '0 6px 0 0 rgba(0,0,0,0.15)',
+                        'game-active': '0 0 0 0 rgba(0,0,0,0.15)',
+                        'game-sm': '0 4px 0 0 rgba(0,0,0,0.15)',
+                        'glow-green': '0 0 20px rgba(34, 197, 94, 0.5)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: max(884px, 100dvh);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center font-display transition-colors duration-200">
+<div class="w-full max-w-md h-screen bg-white dark:bg-gray-800 flex flex-col shadow-2xl relative overflow-hidden transition-colors duration-200">
+<div class="bg-game-purple w-full p-4 flex justify-between items-center text-white shadow-game-sm relative z-20">
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-icons-round text-2xl drop-shadow-md">volume_up</span>
+</button>
+<div class="flex items-center space-x-4 font-black text-lg text-shadow">
+<span>6m</span>
+<div class="flex items-center space-x-1 bg-black/10 px-2 py-1 rounded-lg">
+<span class="material-icons-round text-yellow-400 text-xl">leaderboard</span>
+</div>
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-icons-round text-2xl drop-shadow-md">settings</span>
+</button>
+</div>
+</div>
+<div class="bg-game-red w-full py-3 z-10 animate-slide-down shadow-md border-b-4 border-game-dark-red">
+<div class="flex items-center justify-center space-x-2 text-white font-black text-2xl uppercase tracking-wider text-shadow">
+<span class="material-icons-round text-3xl">cancel</span>
+<span>Incorrect</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-center px-6 pt-6 pb-24 overflow-y-auto relative z-10 scrollbar-hide">
+<div class="w-full mb-8 text-center mt-2">
+<h2 class="text-xl md:text-2xl font-extrabold text-gray-800 dark:text-white leading-tight break-words">
+                Yann LeCun 提出的 JEPA (联合嵌入预测架构) 致力于:
+            </h2>
+</div>
+<div class="w-full space-y-4 flex-1 flex flex-col justify-start">
+<div class="w-full bg-white dark:bg-gray-700 text-gray-400 dark:text-gray-500 font-bold text-lg py-4 px-6 rounded-xl shadow-game border-2 border-gray-100 dark:border-gray-600 flex items-center justify-between opacity-50 grayscale transition-all">
+<div class="bg-gray-100 dark:bg-gray-600 rounded-lg p-2 mr-4">
+<span class="material-icons-round text-xl text-gray-400">category</span>
+</div>
+<span class="flex-1 text-center mr-8">生成高质量图像</span>
+</div>
+<div class="w-full bg-game-green text-white font-bold text-lg py-4 px-6 rounded-xl shadow-game ring-4 ring-green-300 dark:ring-green-900 flex items-center justify-between relative overflow-hidden z-10 shadow-glow-green scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 animate-[shimmer_2s_infinite]"></div>
+<div class="bg-black/10 rounded-lg p-2 mr-4 relative z-10">
+<span class="material-icons-round text-xl">check_circle</span>
+</div>
+<span class="flex-1 text-center mr-8 relative z-10 text-shadow">特征空间的预测</span>
+</div>
+<div class="w-full bg-white dark:bg-gray-700 text-gray-400 dark:text-gray-500 font-bold text-lg py-4 px-6 rounded-xl shadow-game border-2 border-gray-100 dark:border-gray-600 flex items-center justify-between opacity-50 grayscale transition-all">
+<div class="bg-gray-100 dark:bg-gray-600 rounded-lg p-2 mr-4">
+<span class="material-icons-round text-xl text-gray-400">bolt</span>
+</div>
+<span class="flex-1 text-center mr-8">强化学习优化</span>
+</div>
+<div class="w-full bg-game-red text-white font-bold text-lg py-4 px-6 rounded-xl shadow-game-active transform translate-y-[6px] ring-4 ring-red-200 dark:ring-red-900/50 flex items-center justify-between relative">
+<div class="bg-black/20 rounded-lg p-2 mr-4">
+<span class="material-icons-round text-xl">close</span>
+</div>
+<span class="flex-1 text-center mr-8 text-shadow">像素级重建</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-700 z-30 flex justify-center pb-8 pt-4">
+<button class="w-full bg-gray-800 dark:bg-white text-white dark:text-gray-900 font-black text-xl py-3 rounded-xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center space-x-2">
+<span>Tap to continue</span>
+<span class="material-icons-round text-2xl">arrow_forward</span>
+</button>
+</div>
+<div class="absolute inset-0 pointer-events-none z-0 opacity-5 dark:opacity-10">
+<div class="absolute top-20 left-10 text-6xl text-gray-400 rotate-12 font-black">?</div>
+<div class="absolute bottom-40 right-10 text-8xl text-gray-400 -rotate-12 font-black">?</div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-gray-100 to-transparent dark:from-gray-700"></div>
+</div>
+</div>
+
+</body></html>

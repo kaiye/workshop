@@ -1,0 +1,22 @@
+,,,,,,,
+Question #,Question Text,Answer 1,Answer 2,Answer 3 (Optional),Answer 4 (Optional),Time Limit (sec) (Max: 300 seconds),Correct Answer(s) (Only include Answer #)
+1,Transformer 架构中，负责“信息整合”并计算词与词之间关联度的组件是：,MLP (FFN),Multi-Head Attention,LayerNorm,Residual Connection,15,2
+2,以下哪个参数决定了 AI 说话的“性格”，值越高越趋于天马行空？,Random Seed,Frequency Penalty,Temperature,Token Limit,15,3
+3,什么是“量变引起质变”，当模型规模达到临界点后突然出现新能力的现象？,泛化 (Generalization),幻觉 (Hallucination),过拟合 (Overfitting),涌现 (Emergence),15,4
+4,“量化 (Quantization)”如 FP16 转 INT4 的核心作用是：,提高模型精度,降低显存占用并提升速度,增加推理延迟,增加参数量,15,2
+5,以下哪项通常不属于 RLHF 流程的三个阶段？,监督微调 (SFT),奖励模型训练 (RM),PPO / 强化学习对齐,联网检索 (RAG),15,4
+6,Yann LeCun 提出的 JEPA (联合嵌入预测架构) 致力于：,预测像素,预测抽象特征，理解物理世界规律,自动生成代码,直接输出机械臂指令,15,2
+7,Agent = Brain + Tools + Planning + _______？,GPU,API,Memory,UI,15,3
+8,以下哪种范式强调“先想后做”，先生成完整计划再严格执行？,ReAct,Plan-and-Solve,SFT,Reflection,15,2
+9,关于“短期记忆 (Short-term Memory)”，在 Agent 中主要指：,向量数据库,上下文窗口 (Context Window),AGENTS.md,MLP 神经元,15,2
+10,“红队测试 (Red Teaming)”在 Agent 中的主要角色是：,增加训练数据量,模拟攻击者寻找安全漏洞（如提示注入）与偏见,优化模型性能,美化界面显示,15,2
+11,哪款产品的定位是“可视化编排”Agent 工作流？,LangGraph,Dify,PyTorch,Claude Code,15,2
+12,不属于评估 AI Coding 能力的基准测试是：,Humanity's Last Exam (HLE) ,HumanEval,SWE-Bench,Terminal Bench,15,1
+13,关于 Claude Code 交互中的快捷键说法错误的是：,! 进入 Bash 模式前缀,@ 提及特定文件或文件夹,Shift + Tab + Tab 进入 Plan 模式,Esc Esc 只能回退历史对话,15,4
+14,MCP (Model Context Protocol) 解决的核心问题是：,如何有效使用资源 (How to Use),如何连接外部资源 (How to Connect),节省 Token,模型如何复用 Skills,15,2
+15,以下关于 Agent Skills 的说法错误的是：,渐进式披露上下文,自然语言定义工作流,只能通过输入 /skill:技能名称 来调用,可以在 Skill 中调用 MCP,15,3
+16,哪一项不属于“Context Rot (上下文腐烂)”的表现？,塞入无关文件导致噪音爆炸,超出窗口限制导致关键信息丢失,忘记长距离指令,模型响应变快,15,4
+17,哪种模型负责将图像切成 Token 喂给 LLM 以实现“看图说话”？,VLM (Vision-Language Model),DiT (Diffusion Transformer),CNN,VLA,15,1
+18,CLIP 模型的核心工作原理是：,预测下一个词,对比学习（连接图像和文本特征空间）,计算损失函数,生成视频,15,2
+19,哪一项不属于提升 RAG 检索质量的技术手段：,禁用向量索引,重排序 (Re-ranking),查询扩展与转换 (Query Expansion),混合搜索 (Hybrid Search),15,1
+20,未来不大可能被 AI 取代的工作技能包括：,信息收集与调研,提出正确的问题,Coding,计划的制定与执行,15,2
