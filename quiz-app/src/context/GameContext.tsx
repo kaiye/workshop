@@ -143,12 +143,29 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         totalTimeRemaining: state.totalTimeRemaining - 1,
       };
 
-    case 'SYNC_STATE':
+    case 'SYNC_STATE': {
+      // Preserve current player's answer state to avoid race condition
+      const currentPlayer = state.players.find((p) => p.id === state.currentPlayerId);
+      const syncedPlayers = action.state.players.map((p) => {
+        if (p.id === state.currentPlayerId && currentPlayer && currentPlayer.currentAnswer !== null) {
+          // Keep the local player's answer state if they've already answered
+          return {
+            ...p,
+            currentAnswer: currentPlayer.currentAnswer,
+            isCorrect: currentPlayer.isCorrect,
+            score: currentPlayer.score,
+          };
+        }
+        return p;
+      });
+
       return {
         ...action.state,
+        players: syncedPlayers,
         currentPlayerId: state.currentPlayerId,
         isHost: state.isHost,
       };
+    }
 
     case 'RESET':
       return INITIAL_GAME_STATE;
@@ -188,6 +205,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
         dispatch({ type: 'SYNC_STATE', state: payload });
       } else if (type === 'PLAYER_JOINED' && state.isHost) {
         dispatch({ type: 'ADD_PLAYER', player: payload });
+      } else if (type === 'ANSWER_SUBMITTED' && state.isHost) {
+        dispatch({ type: 'SUBMIT_ANSWER', playerId: payload.playerId, answer: payload.answer });
       }
     };
 

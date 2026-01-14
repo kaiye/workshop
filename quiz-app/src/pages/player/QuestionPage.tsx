@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components/common';
+import { Header, Button } from '../../components/common';
 import { OptionButton, Timer, type OptionState } from '../../components/game';
 import { CorrectBanner, IncorrectBanner } from '../../components/feedback';
 import { useGame } from '../../context/GameContext';
 
 export function QuestionPage() {
   const navigate = useNavigate();
-  const { state, submitAnswer, getCurrentQuestion, getCurrentPlayer } = useGame();
+  const { state, submitAnswer, nextQuestion, getCurrentQuestion, getCurrentPlayer } = useGame();
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -35,6 +35,20 @@ export function QuestionPage() {
     setTimeout(() => {
       setShowResult(true);
     }, 500);
+  };
+
+  // Auto-advance to next question when correct
+  useEffect(() => {
+    if (showResult && player?.isCorrect) {
+      const timer = setTimeout(() => {
+        nextQuestion();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showResult, player?.isCorrect, nextQuestion]);
+
+  const handleNextQuestion = () => {
+    nextQuestion();
   };
 
   const getOptionState = (index: number): OptionState => {
@@ -126,12 +140,24 @@ export function QuestionPage() {
         {showResult && (
           <div className="fixed bottom-0 left-0 w-full p-4 bg-white/95 backdrop-blur-md border-t border-gray-100 z-30">
             <div className="max-w-md mx-auto">
-              <p className="text-center text-gray-600 font-semibold">
-                {isCorrect ? '+100 points!' : 'Better luck next time!'}
-              </p>
-              <p className="text-center text-gray-400 text-sm mt-1">
-                Waiting for next question...
-              </p>
+              {isCorrect ? (
+                <>
+                  <p className="text-center text-game-green font-bold text-lg">+100 points!</p>
+                  <p className="text-center text-gray-400 text-sm mt-1">
+                    Moving to next question...
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-center text-gray-600 font-semibold mb-3">
+                    Better luck next time!
+                  </p>
+                  <Button onClick={handleNextQuestion} fullWidth>
+                    Next Question
+                    <span className="material-icons-round">arrow_forward</span>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}
