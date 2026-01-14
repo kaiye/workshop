@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+    /* 全局重置 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    /* 16:9 容器 */
+    .container {
+        width: 100%;
+        max-width: 1280px;
+        aspect-ratio: 16 / 9;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border: 4px solid #fff; /* 白色边框模拟间隔 */
+        gap: 4px; /* 象限间隙 */
+    }
+
+    /* 象限通用样式 */
+    .quadrant {
+        padding: 2.5%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* 防止溢出 */
+    }
+
+    /* 标题样式 */
+    h1 {
+        font-size: 1.8vw; /* 响应式字体 */
+        font-weight: bold;
+        margin-bottom: 1.5vh;
+        font-family: "Georgia", serif; /* 模仿原图衬线体标题 */
+    }
+
+    h2 {
+        font-size: 0.9vw;
+        font-weight: 700;
+        margin-bottom: 0.8vh;
+        opacity: 0.9;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 2px;
+    }
+
+    .light-text h2 {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        font-size: 0.8vw;
+        line-height: 1.4;
+        margin-bottom: 0.4vh;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    li span {
+        margin-right: 0.4em;
+        font-size: 0.7vw;
+        margin-top: 0.2em;
+    }
+
+    /* --- 象限 1: 认知能力 (Cognitive) --- */
+    .cognitive {
+        background-color: #001F3F; /* 深蓝 */
+        color: white;
+    }
+    
+    .cognitive-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 2vh 2vw;
+        height: 100%;
+    }
+
+    /* --- 象限 2: 人际交往 (Interpersonal) --- */
+    .interpersonal {
+        background-color: #00A4EF; /* 亮蓝 */
+        color: #000; /* 原图此处为黑字 */
+    }
+
+    .interpersonal-layout {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 2vh;
+    }
+
+    .inter-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2vw;
+        flex: 1;
+    }
+
+    .inter-bottom {
+        flex: 1;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        padding-top: 1vh;
+    }
+    
+    .teamwork-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 2vw;
+    }
+
+    /* --- 象限 3: 自我领导力 (Self-leadership) --- */
+    .self-leadership {
+        background-color: #AEEEEE; /* 淡青色 */
+        color: #000; /* 原图此处为黑字 */
+    }
+
+    .self-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        gap: 1vh;
+    }
+
+    .self-row {
+        flex: 1;
+    }
+    
+    .self-items-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 内部两列 */
+        gap: 0 1vw;
+    }
+
+    /* --- 象限 4: 数字化能力 (Digital) --- */
+    .digital {
+        background-color: #0047BB; /* 皇室蓝 */
+        color: white;
+    }
+
+    .digital-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    
+    .digital-row {
+        margin-bottom: 1.5vh;
+    }
+
+    .digital-items-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 2vw;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="quadrant cognitive">
+        <h1>Cognitive 认知能力</h1>
+        <div class="cognitive-grid">
+            <div>
+                <h2>批判性思维</h2>
+                <ul>
+                    <li><span>🟡</span>结构化解决问题</li>
+                    <li><span>🟡</span>逻辑推理</li>
+                    <li><span>🟢</span>理解偏见</li>
+                    <li><span>🔴</span>搜集相关信息</li>
+                </ul>
+            </div>
+            <div>
+                <h2>规划与工作方式</h2>
+                <ul>
+                    <li><span>🔴</span>制定工作计划</li>
+                    <li><span>🟡</span>时间管理与优先级</li>
+                    <li><span>🟡</span>敏捷思维</li>
+                    <li><span>🟢</span>学习能力</li>
+                </ul>
+            </div>
+            <div>
+                <h2>沟通</h2>
+                <ul>
+                    <li><span>🟡</span>讲故事与公开演讲</li>
+                    <li><span>🟢</span>提出正确的问题</li>
+                    <li><span>🔴</span>综合/提炼信息</li>
+                    <li><span>🟢</span>积极倾听</li>
+                </ul>
+            </div>
+            <div>
+                <h2>思维灵活性</h2>
+                <ul>
+                    <li><span>🟡</span>创造力与想象力</li>
+                    <li><span>🟢</span>知识迁移能力</li>
+                    <li><span>🟡</span>换位/多视角思考</li>
+                    <li><span>🟢</span>适应力</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="quadrant interpersonal light-text">
+        <h1>Interpersonal 人际交往</h1>
+        <div class="interpersonal-layout">
+            <div class="inter-top">
+                <div>
+                    <h2>调动体系</h2>
+                    <ul>
+                        <li><span>🟢</span>榜样示范</li>
+                        <li><span>🟢</span>双赢谈判</li>
+                        <li><span>🟢</span>描绘鼓舞人心的愿景</li>
+                        <li><span>🟢</span>组织意识</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>建立关系</h2>
+                    <ul>
+                        <li><span>🟢</span>同理心</li>
+                        <li><span>🟢</span>建立信任</li>
+                        <li><span>🟢</span>谦逊</li>
+                        <li><span>🟢</span>社交能力</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="inter-bottom">
+                <h2>团队效能</h2>
+                <div class="teamwork-grid">
+                    <ul>
+                        <li><span>🟢</span>促进包容性</li>
+                        <li><span>🟢</span>激励不同性格的人</li>
+                        <li><span>🟢</span>解决冲突</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟢</span>协作</li>
+                        <li><span>🟢</span>指导/教练</li>
+                        <li><span>🟢</span>赋能/授权</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quadrant self-leadership light-text">
+        <h1>Self-leadership 自我领导力</h1>
+        <div class="self-grid">
+            <div class="self-row">
+                <h2>自我意识与自我管理</h2>
+                <div class="self-items-grid">
+                    <ul>
+                        <li><span>🟢</span>理解自身情绪与触发点</li>
+                        <li><span>🟢</span>自我控制与调节</li>
+                        <li><span>🟢</span>理解自身优势</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟢</span>正直/诚信</li>
+                        <li><span>🟢</span>自我激励与健康</li>
+                        <li><span>🟢</span>自信</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="self-row">
+                <h2>企业家精神</h2>
+                <div class="self-items-grid">
+                    <ul>
+                        <li><span>🟢</span>勇气与冒险</li>
+                        <li><span>🟢</span>推动变革与创新</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟢</span>能量、激情与乐观</li>
+                        <li><span>🟢</span>打破常规</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="self-row">
+                <h2>目标达成</h2>
+                <div class="self-items-grid">
+                    <ul>
+                        <li><span>🟢</span>主人翁精神与果敢</li>
+                        <li><span>🟢</span>成就导向</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟢</span>坚毅与恒心</li>
+                        <li><span>🟢</span>应对不确定性</li>
+                        <li><span>🟢</span>自我发展</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quadrant digital">
+        <h1>Digital 数字化能力</h1>
+        <div class="digital-grid">
+            <div class="digital-row">
+                <h2>数字流利度与公民身份</h2>
+                <div class="digital-items-grid">
+                    <ul>
+                        <li><span>🟡</span>数字素养</li>
+                        <li><span>🟡</span>数字化学习</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟡</span>数字化协作</li>
+                        <li><span>🟢</span>数字伦理</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="digital-row">
+                <h2>软件使用与开发</h2>
+                <div class="digital-items-grid">
+                    <ul>
+                        <li><span>🔴</span>编程素养</li>
+                        <li><span>🔴</span>数据分析与统计</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟡</span>计算与算法思维</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="digital-row">
+                <h2>理解数字系统</h2>
+                <div class="digital-items-grid">
+                    <ul>
+                        <li><span>🟡</span>数据素养</li>
+                        <li><span>🟡</span>智能系统</li>
+                    </ul>
+                    <ul>
+                        <li><span>🟡</span>网络安全素养</li>
+                        <li><span>🟢</span>技术翻译与赋能</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
